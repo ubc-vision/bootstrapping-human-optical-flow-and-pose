@@ -26,13 +26,13 @@ from utils.utils import InputPadder
 DEVICE = 'cuda'
 device = torch.device('cuda')
 #hyperparameters
-lambda_flow = 0.01
-lambda_3D = 300
-lambda_det = 0.01
-lambda_2D = 0.001
+lambda_opt = 0.01
+lambda_pos = 300
+lambda_2D = 0.01
+lambda_pos_2D = 0.00 #not necessary, can set it to 0.001
 lambda_cam = 0.1
 lambda_bone = 10000
-lambda_init = 400
+lambda_3D = 400
 pose_steps = 1500
 flow_steps = 8
 neighborhood = 15
@@ -88,9 +88,9 @@ def pose_optimization(results, file_num, s, loop_counter, base_input_image_path_
                     if count != 0:
                         pj2d_prev = pj2d[count-1]
                         #temporal loss
-                        temp_l = lambda_cam * criterion(cam_tensor[count], cam_tensor[count-1]).sum().float() + lambda_2D * criterion(pj2d_curr, pj2d_prev).sum().float()  + lambda_3D * criterion(X_tensor[count][human], X_tensor[(count-1)][human]).sum().float() + lambda_bone * criterion(skel[count], skel[count-1]).sum().float()
+                        temp_l = lambda_cam * criterion(cam_tensor[count], cam_tensor[count-1]).sum().float() + lambda_pos_2D * criterion(pj2d_curr, pj2d_prev).sum().float()  + lambda_pos * criterion(X_tensor[count][human], X_tensor[(count-1)][human]).sum().float() + lambda_bone * criterion(skel[count], skel[count-1]).sum().float()
                         #flow loss
-                        flow_l = lambda_flow * criterion(torch.tensor(get_flow_metro(results[(count-1)], pj2d_prev[human]), device = device).float(),(pj2d_curr[human] - pj2d_prev[human]).float()).sum().float()
+                        flow_l = lambda_opt * criterion(torch.tensor(get_flow_metro(results[(count-1)], pj2d_prev[human]), device = device).float(),(pj2d_curr[human] - pj2d_prev[human]).float()).sum().float()
                     #if first frame    
                     else:
                         #temporal loss
@@ -98,9 +98,9 @@ def pose_optimization(results, file_num, s, loop_counter, base_input_image_path_
                         #flow loss
                         flow_l = 0
                     #reprojection loss
-                    det_l = lambda_det * criterion(torch.tensor(confidence[count][human], device = device) * torch.tensor(x_det[count][human], device = device), torch.tensor(confidence[count][human], device = device) * pj2d_curr[human]).sum().float()
+                    det_l = lambda_2D * criterion(torch.tensor(confidence[count][human], device = device) * torch.tensor(x_det[count][human], device = device), torch.tensor(confidence[count][human], device = device) * pj2d_curr[human]).sum().float()
                     #prior term
-                    prior_l = lambda_init * criterion(X_tensor[count][human], X_init[count][human]).sum().float()
+                    prior_l = lambda_3D * criterion(X_tensor[count][human], X_init[count][human]).sum().float()
                     l  = temp_l +  det_l + prior_l + flow_l
                     loss_list.append(l.float())                                    
                 count += 1
