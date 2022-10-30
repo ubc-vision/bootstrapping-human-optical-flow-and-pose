@@ -5,8 +5,7 @@ This repository contains the code for our paper:
 
 BMVC 2022
 
-<img src="https://user-images.githubusercontent.com/27774638/198904937-c9005bca-bb03-4376-9c0d-c979e9e21417.png">
-
+<img src="https://user-images.githubusercontent.com/27774638/198905230-8a5552c7-b354-4870-ace4-3920308692b4.png">
 
 ## Requirements
 ```
