@@ -5,6 +5,9 @@ This repository contains the code for our paper:
 
 BMVC 2022
 
+<img src="https://user-images.githubusercontent.com/27774638/198904937-c9005bca-bb03-4376-9c0d-c979e9e21417.png">
+
+
 ## Requirements
 ```
 conda create --name metro_raft
