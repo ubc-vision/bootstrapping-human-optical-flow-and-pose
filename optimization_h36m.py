@@ -231,7 +231,7 @@ def main():
             file_num = file_path[(i)].split(".mp4")[0]
             if  file_num.split(".")[-1] == "60457274" and file_num != '_ALL.60457274': 
                 print("Optimizing - ",file_num)
-                results = np.load('metro_3D_estimates_h36m/'+s+'/'+ file_num +'_results.npz',allow_pickle=True)['results'][()]
+                results = np.load('metro_estimates_h36m/'+s+'/'+ file_num +'_results.npz',allow_pickle=True)['results'][()]
                 results = pose_optimization(results, file_num, s, 0, base_input_image_path_raft, input_video_file_path)
                 print("First cycle of optical flow optimization begins")
                 results, model, _, _ = flow_optimization(results, None, None, file_num, None, 0, s)

@@ -87,7 +87,7 @@ def get_joints_dcpose_h36m(file_num, s):
         """returns 2d detections and confidence values from off the shelf 2D pose estimator DCPose, 
            rearrangement is done so that it matches METRO joint ordering"""
         from .flow_utils import read_json_from_file
-        dcpose_json = read_json_from_file("dcpose_2D_estimates_h36m/"+s+"/result_"+file_num+".json")
+        dcpose_json = read_json_from_file("dcpose_estimates_h36m/"+s+"/result_"+file_num+".json")
         x_det = np.zeros((len(dcpose_json['Info']),1, 14, 2))
         confidence = np.zeros((len(dcpose_json['Info']),1, 14, 1))
         for im in range(len(dcpose_json['Info'])):

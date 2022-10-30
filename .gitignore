@@ -16,3 +16,4 @@ RAFT/pytorch_env
 RAFT/models
 RAFT/build
 RAFT/correlation.egg-info
+optimization_sintel.py
