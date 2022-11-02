@@ -37,6 +37,11 @@ The preprocessed 2D and 3D annotation files data_2d_h36m_gt.npz and data_3d_h36m
 cp /path/to/file/data_2d_h36m_gt.npz data/h36m/
 cp /path/to/file/data_3d_h36m.npz data/h36m/
 ```
+## Required models can be downloaded by running
+```
+cd RAFT/
+./download_models.sh
+```
 
 ## Pre-computed Mesh Transformer (METRO) and Deep Dual Consecutive Network for Human Pose Estimation (DCPose) estimates
 
