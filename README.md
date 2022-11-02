@@ -40,7 +40,7 @@ cp /path/to/file/data_3d_h36m.npz data/h36m/
 
 ## Pre-computed Mesh Transformer (METRO) and Deep Dual Consecutive Network for Human Pose Estimation (DCPose) estimates
 
-Our pre-computed METRO and DCPose estimates must be downloaded in order to run the framework. This can be done by simply downloading the folders [metro_estimates_h36m](https://drive.google.com/drive/folders/1w4lOmWpRwNDm88B__YB3_w2pcatcFwu0?usp=share_link) and 
+Our pre-computed METRO and DCPose estimates on the Human3.6M must be downloaded in order to run the framework. This can be done by simply downloading the folders [metro_estimates_h36m](https://drive.google.com/drive/folders/1w4lOmWpRwNDm88B__YB3_w2pcatcFwu0?usp=share_link) and 
 [dcpose_estimates_h36m](https://drive.google.com/drive/folders/13Js77b5LjDC1YzEJh268jfZjGWeZkpM3?usp=share_link).
 
 ## Finetuning human optical flow and pose using our framework
