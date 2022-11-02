@@ -7,7 +7,7 @@ BMVC 2022
 
 <img src="https://user-images.githubusercontent.com/27774638/198905230-8a5552c7-b354-4870-ace4-3920308692b4.png">
 
-## Requirements
+## Required libraries
 ```
 conda create --name metro_raft
 conda activate metro_raft
