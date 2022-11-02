@@ -224,6 +224,7 @@ def main():
     subjects = ["S9", "S11"]
     base_input_image_path_raft = 'raft_inputs/'
     input_video_file_path = '/Videos/'
+    os.mkdir(base_input_image_path_raft)
     for s in subjects:
         file_path = data_paths_full(s, input_video_file_path)
         print("Total number of videos, ", len(file_path))
