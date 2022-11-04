@@ -63,7 +63,7 @@ def pose_optimization(results, file_num, s, loop_counter, base_input_image_path_
       X_init = torch.tensor(X_init_numpy, device = device)
       cam_tensor = torch.tensor(cam, device = device)      
     
-      #Huber loss and Adam optimizer
+      #Smooth L1 loss and Adam optimizer
       criterion = torch.nn.SmoothL1Loss(reduction='none')
       optimizer = torch.optim.Adam([X_tensor, cam_tensor], 0.001)
       X_tensor.requires_grad = True
@@ -155,7 +155,7 @@ def flow_optimization(results, x_det, confidence, file_num, model, loop_count, s
       model = model.train()
       #generate target flow map
       target, _, _ = generate_flowmap(file_num, x_det, confidence, results, loop_count, s)
-      #Huber loss and Adam optimizer
+      #Smooth L1 loss and Adam optimizer
       criterion = torch.nn.SmoothL1Loss()
       optimizer = torch.optim.Adam(model.parameters(), lr = 1e-5)
       #finetuning loop starts
